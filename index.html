@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recipe Generator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Recipe Generator</h1>
+            <p>Discover delicious recipes tailored to your preferences</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <div class="recipe-options">
+                    <div class="option-group">
+                        <label for="cuisine"><i class="fas fa-globe"></i> Cuisine Type:</label>
+                        <select id="cuisine">
+                            <option value="any">Any</option>
+                            <option value="italian">Italian</option>
+                            <option value="indian">Indian</option>
+                            <option value="mexican">Mexican</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="mediterranean">Mediterranean</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label for="diet"><i class="fas fa-utensils"></i> Dietary Preference:</label>
+                        <select id="diet">
+                            <option value="any">Any</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="gluten-free">Gluten-Free</option>
+                            <option value="keto">Keto</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label for="time"><i class="fas fa-clock"></i> Cooking Time:</label>
+                        <select id="time">
+                            <option value="any">Any</option>
+                            <option value="quick">Quick (under 30 mins)</option>
+                            <option value="medium">Medium (30-60 mins)</option>
+                            <option value="long">Long (over 60 mins)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ingredients-input">
+                    <div class="ingredients-header">
+                        <label for="ingredients"><i class="fas fa-carrot"></i> Available Ingredients</label>
+                        
+                    </div>
+                    <div class="ingredients-input">
+                        <button id="showIngredientsBtn" class="info-btn">
+                            <i class="fas fa-list"></i> Show Valid Ingredients
+                        </button>
+                    </div>
+                    <textarea id="ingredients" placeholder="Enter ingredients you have, separated by commas..."></textarea>
+                    <div id="validIngredientsList" class="hidden">
+                        <h4><i class="fas fa-check-circle"></i> Valid Ingredients</h4>
+                        <div class="ingredients-categories">
+                            <div class="category">
+                                <h5><i class="fas fa-leaf"></i> Vegetables</h5>
+                                <p>potato, tomato, onion, garlic, ginger, carrot, bell pepper, broccoli, cauliflower, spinach, lettuce, cabbage, mushroom, eggplant, zucchini, cucumber, corn, peas, green beans, asparagus, celery, leek, shallot, scallion, kale, arugula, radish</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-apple-alt"></i> Fruits</h5>
+                                <p>apple, banana, orange, lemon, lime, grape, strawberry, blueberry, raspberry, mango, pineapple, pear, peach, plum, cherry, kiwi, melon, watermelon</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-drumstick-bite"></i> Meats</h5>
+                                <p>chicken, beef, pork, lamb, turkey, duck, fish, salmon, tuna, shrimp, crab, lobster, mussel, clam, oyster, sausage, bacon, ham</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-cheese"></i> Dairy</h5>
+                                <p>milk, cheese, butter, cream, yogurt, sour cream, cottage cheese, cream cheese</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-bread-slice"></i> Grains</h5>
+                                <p>rice, pasta, bread, flour, oatmeal, quinoa, couscous, barley, buckwheat</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-seedling"></i> Legumes</h5>
+                                <p>lentil, bean, chickpea, black bean, kidney bean, pinto bean, soybean, tofu</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-pepper-hot"></i> Nuts & Seeds</h5>
+                                <p>almond, walnut, cashew, peanut, pecan, hazelnut, pistachio, sunflower seed, pumpkin seed, sesame seed, chia seed, flaxseed</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-mortar-pestle"></i> Herbs & Spices</h5>
+                                <p>basil, oregano, thyme, rosemary, parsley, cilantro, mint, dill, sage, cumin, coriander, turmeric, paprika, cinnamon, nutmeg, clove, cardamom, ginger, garlic powder, onion powder, chili powder, cayenne, black pepper</p>
+                            </div>
+                            <div class="category">
+                                <h5><i class="fas fa-oil-can"></i> Oils & Condiments</h5>
+                                <p>olive oil, vegetable oil, coconut oil, sesame oil, vinegar, soy sauce, mustard, ketchup, mayonnaise, honey, maple syrup, sugar, salt, pepper</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="generateBtn">
+                        <i class="fas fa-magic"></i> Generate Recipe
+                    </button>
+                    <button id="randomBtn">
+                        <i class="fas fa-random"></i> Surprise Me!
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <div id="result" class="hidden">
+                    <div class="recipe-header">
+                        <h2 id="recipe-title"></h2>
+                        <div class="recipe-meta">
+                            <span id="recipe-time"></span>
+                            <span id="recipe-servings"></span>
+                            <span id="recipe-difficulty"></span>
+                        </div>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="ingredients-list">
+                            <h3><i class="fas fa-list-ul"></i> Ingredients</h3>
+                            <ul id="recipe-ingredients"></ul>
+                        </div>
+                        <div class="instructions">
+                            <h3><i class="fas fa-book-open"></i> Instructions</h3>
+                            <ol id="recipe-steps"></ol>
+                        </div>
+                        <div class="tips">
+                            <h3><i class="fas fa-lightbulb"></i> Tips & Notes</h3>
+                            <div id="recipe-tips"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+</html> 
