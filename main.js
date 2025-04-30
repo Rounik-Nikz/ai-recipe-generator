@@ -89,7 +89,7 @@ function parseRecipeResponse(response) {
         // Try to extract at least title, ingredients, and steps
         const fallback = { title: '', time: '', servings: '', difficulty: '', ingredients: [], steps: [], tips: '' };
         // Title
-        const titleMatch = response.match(/Title: ?(.+)/i);
+        const titleMatch = response.match(/Title: ?(.+)/i) || response.match(/^##\s*(.+)/m) || response.match(/\*\*(.+?)\*\*/);
         if (titleMatch) fallback.title = titleMatch[1].trim();
         // Ingredients
         const ingredientsSection = response.split(/Ingredients:/i)[1];
@@ -273,7 +273,7 @@ function validateIngredients(ingredients) {
     if (invalidIngredients.length > 0) {
         return {
             isValid: false,
-            message: `Invalid ingredients found: ${invalidIngredients.join(', ')}. Please enter valid food ingredients from the list.`
+            message: `Ingredients ${invalidIngredients.join(', ')} was not found. Please enter available food ingredients from the list.`
         };
     }
     
@@ -324,7 +324,7 @@ async function generateRecipe(options) {
         1. [Steps]
         
         Tips: [Brief tips]
-        
+        Important: Don't give in markdown format. Use plain text.
         Keep it focused on cooking instructions only.`;
 
         const result = await model.generateContent(prompt);
